@@ -1,0 +1,122 @@
+
+<div class="container1" >
+    <div class="card" *ngIf="param=='register'">
+      <div class="card-body">
+        <form [formGroup]="userForm"  >
+        <div class="user-box">
+                <input
+                type="text"
+                formControlName="name" 
+                name="name"
+                id="name"
+                placeholder=" " 
+                [ngClass]="{ 'is-invalid':userForm.controls['name'].hasError('required') && this.submitted }"
+                autocomplete="off"
+                />
+                <p *ngIf="userForm.controls['name'].hasError('required') && this.submitted" id="username_error" style="margin-top: -23px!important;" class="error">Name is Required..</p>
+                <label for="name">Username</label>
+            </div>
+          <div class="user-box">
+              <input
+              type="text"
+              formControlName="phone" 
+              name="phone"
+              id="phone"
+              placeholder=" " 
+              [ngClass]="{ 'is-invalid': invalidPhone() }"
+              autocomplete="off"
+              (keypress)="PhonekeyPress($event)"
+              minlength=10 maxlength=10
+            />
+           
+            <p *ngIf="!userForm.controls['phone'].hasError('required') && invalidPhone()" id="phone_error1" style="margin-top: -23px!important;" class="error">phone # is Invalid..</p>
+            <p *ngIf="userForm.controls['phone'].hasError('required') && this.submitted" id="phone_error" style="margin-top: -23px!important;" class="error">phone # is Required..</p>
+            <p *ngIf="userExistError!='' && !userForm.controls['phone'].hasError('required')" id="phone_error1"  class="error1">phone # already exists.</p>
+            <label for="phone">phone #</label>
+          </div>
+          <div class="user-box">
+              <input
+              type="password"
+              formControlName="password" 
+              name="password"
+              placeholder=" " 
+              id="password"
+              title="Password Must contain Atleast one Upper-case,lower-case,numeric letter & should be min 8 characters"
+              (keypress)="PasswordkeyPress($event)"
+              [ngClass]="{ 'is-invalid': invalidPassword() }"
+              autocomplete="off"
+            /><span class="icon" ><i id="icon" class="fa  fa-eye-slash" style="color:cornsilk" aria-hidden="true"></i></span>
+           
+            <p *ngIf="invalidPassword() && !userForm.controls['password'].hasError('required')" id="Password_error" style="margin-top: -23px!important;" class="error">Password is Invalid.</p>
+            <p *ngIf="userForm.controls['password'].hasError('required') &&  this.submitted"  style="margin-top: -23px!important;" class="error">Password is Required.</p>
+            <p class="invalid-feedback" *ngIf="param=='incorrectPassword'">Incorrect password..</p>
+            <label for="Password">Password</label>
+          </div>
+          <div class="user-box">
+                <input
+                type="password"
+                formControlName="confirmPassword" 
+                name="confirmPassword"
+                placeholder=" " 
+                id="confirmPassword"
+                (keypress)="PasswordkeyPress($event)"
+                [ngClass]="{ 'is-invalid': userForm.controls['confirmPassword'].hasError('NoPassswordMatch')&& this.submitted }"
+                autocomplete="off"
+              />
+             
+              <p *ngIf="userForm.controls['confirmPassword'].hasError('NoPassswordMatch')&& !userForm.controls['password'].hasError('required') " id="confirmPassword_error1" style=" width: 100%;margin-top: -23px!important;font-size: 80%;color: #dc3545;">Password do not match.</p>
+             
+              <label for="Password">Password</label>
+            </div>
+        </form>
+        <div style="position:relative">
+        <a (click)="onSubmit()">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Register
+          </a>
+        </div>
+       
+        <div style="text-align:center;color:cornsilk;font-size: 14px;margin-top: 5%" >
+          <span>Already have an account?</span> &nbsp;&nbsp;
+            <span style="text-decoration: none;font-size: 17px;outline:none" routerLink="/login">Login</span>
+         </div>
+      </div>
+    </div>
+    <div class="card" style="height: 400px" *ngIf="param=='Otp'">
+            <div class="card-body">
+                    <h5 class="mb-0" style="text-align:center;color: lightcoral">OTP verification</h5>
+                    <p style="font-size:14px;text-align:center;padding-top: 8%;color: lightcoral" >Please check your phone for a text message with your code. Your code is 6 characters in length...</p>
+              <form [formGroup]="otpForm"  >
+                <div class="user-box" style="margin-top: 28px">
+                    <input
+                    type="text"
+                    formControlName="otpCode" 
+                    name="otpCode"
+                    id="otpCode"
+                    placeholder=" " 
+                    (keypress)="otpkeyPress($event)"
+                    [ngClass]="{ 'is-invalid':(invalidOTP()) && this.submitted}" 
+                    autocomplete="off"
+                  />
+                  <p *ngIf="invalidOTP()" id="OTP_error" class="invalid-feedback">OTP is required.</p>
+                  <p *ngIf="Otp_invalid!=''" id="username_error" style="margin-top: -23px!important;" class="error">OTP is Invalid..</p>
+                  
+                  <label for="username">OTP</label>
+                </div>
+               
+              </form>
+              <div style="position:relative">
+              <a (click)="onOTPSubmit()" style="margin-top: 35px">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  Submit
+                </a>
+              </div>
+            </div>
+          </div>
+  </div>

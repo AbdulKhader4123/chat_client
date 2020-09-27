@@ -1,0 +1,16 @@
+<ng-container *ngFor="let elem of chatList;let index=index">
+    <div class="chat-list-item d-flex flex-row w-100 p-2 border-bottom" id="{{'chatDiv'+index}}" [ngClass]="elem.unread ? 'unread' : ''"
+    (click) ="generateMessageArea($event, index)">
+        <img [src]="elem.isGroup ? elem.group.pic : elem.contact!=undefined?elem.contact.pic:''" alt="Profile Photo" class="img-fluid rounded-circle" style="height:50px;width:14%;margin-right:0.5rem !important">
+        <div class="w-50">
+            <div class="name">{{elem.name}}</div>
+            <div class="small last-message">{{elem | displaynumber : contactList}}
+                <i *ngIf="elem.msg?.sender === user.number" [ngClass]='elem.msg.status < 2 ? "far fa-check-circle mr-1" : "fas fa-check-circle mr-1"' ></i> {{elem.msg?.body}}
+            </div>
+        </div>
+        <div class="flex-grow-1 text-right">
+            <div class="small time">{{elem.msg?.time| dateformat:'chatListFormat'}}</div>
+            <div *ngIf="elem.unread" class="badge badge-success badge-pill small" id='unread-count'>{{ elem.unread}} </div>
+        </div>
+    </div>
+</ng-container>

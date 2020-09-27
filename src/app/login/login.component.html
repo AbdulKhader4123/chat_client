@@ -1,0 +1,59 @@
+
+<div class="container1" >
+    <div class="card" >
+      <div class="card-body">
+        <form [formGroup]="LoginForm"  >
+          <div class="user-box">
+              <input
+              type="text"
+              formControlName="phone" 
+              name="phone"
+              id="phone"
+              placeholder=" " 
+              [ngClass]="{ 'is-invalid': invalidUserName() }"
+              autocomplete="off"
+              (keypress)="UsernamekeyPress($event)"
+              minlength=10 maxlength=10
+            />
+            <p *ngIf="LoginForm.controls['phone'].hasError('required') && this.submitted" id="username_error" style="margin-top: -23px!important;" class="error">phone # is Required..</p>
+            <p *ngIf="!LoginForm.controls['phone'].hasError('required') && invalidUserName()" id="username_error" style="margin-top: -23px!important;" class="error">phone # is Invalid..</p>
+            <p style="margin-top: -23px!important;" class="error" *ngIf="param=='invalidUsername'">Cannot find user..</p>
+            <label for="username">Phone</label>
+          </div>
+          <div class="user-box">
+              <input
+              type="password"
+              formControlName="password" 
+              name="password"
+              placeholder=" " 
+              id="password"
+              title="Password Must contain Atleast one Upper-case,lower-case,numeric letter & should be min 8 characters"
+              (keypress)="PasswordkeyPress($event)"
+              [ngClass]="{ 'is-invalid': invalidPassword() }"
+              autocomplete="off"
+            /><span class="icon" ><i id="icon" class="fa  fa-eye-slash" style="color:cornsilk" aria-hidden="true"></i></span>
+           
+            <p *ngIf="LoginForm.controls['password'].hasError('required') && this.submitted" id="Password_error" style="margin-top: -23px!important;" class="error">Password is Required.</p>
+            <p *ngIf="invalidPassword() && !LoginForm.controls['password'].hasError('required')" id="Password_error" style="margin-top: -23px!important;" class="error">Password is Invalid.</p>
+            <p class="invalid-feedback" *ngIf="param=='incorrectPassword'">Incorrect password..</p>
+            <label for="Password">Password</label>
+          </div>
+        </form>
+        <div style="position:relative">
+        <a (click)="onSubmit()">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Login
+          </a>
+          <span style="text-decoration: none;" routerLink="/reset/password-reset" class="btn btn-link forgot">Forgot Password?</span>
+        </div>
+       
+        <div style="text-align:center;color:cornsilk;font-size: 14px;margin-top: 8%" >
+          <span>Don't have an account?</span> &nbsp;&nbsp;
+            <span style="text-decoration: none;font-size: 17px;outline:none" routerLink="/register">Sign up</span>
+         </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,40 @@
+<div class="container-fluid" id="main-container">
+    
+<div class="row h-100" >
+    <div class="col-12 col-sm-5 col-md-4 d-flex flex-column" id="chat-list-area" style="position:relative;">
+
+        <!-- Navbar contactlist -->
+        <div class="row d-flex flex-row align-items-center p-2 " id="navbarContact">
+            <i class="fas fa-arrow-left p-2  my-1 text-white" style="font-size: 1.5rem;margin-left: 0.3em!important; cursor: pointer;" (click)="goToHome()"></i>	
+                                    
+            <div class="text-white font-weight-bold mx-2">Select Contact</div>
+            <div class="text-white font-weight-bold" id="username"></div>
+
+            <div class="nav-item dropdown ml-auto ">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown"  role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v text-white"></i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" >Add Contact</a>
+                    <a class="dropdown-item" >Refresh</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact List -->
+        <ng-container id="contact-list"   *ngFor="let elem of contactList;let index=index">
+            <div class="chat-list-item d-flex flex-row w-100 p-2 border-bottom " id="{{'contact_'+index}}"
+                (click)='generateMessageAreaForContact("contact_"+index,elem.name,elem.phone,elem.pic,elem.lastSeen)'>
+                <img [src]="elem.pic" alt="Profile Photo" class="img-fluid rounded-circle" style="height:50px;width:14%;margin-right:0.5rem !important">
+                <div>
+                    <div class="name  font-weight-bold">{{elem.name}}</div>
+                    <div class="small last-message">{{elem.about}}</div>
+                </div>
+            </div>
+        </ng-container>
+
+        </div>
+
+        <!-- Message Area -->
+        <messagewindow  class="d-none d-sm-flex flex-column col-12 col-sm-7 col-md-8 p-0 h-100"  id="message-area"></messagewindow>
+    </div>
+    </div>
+    

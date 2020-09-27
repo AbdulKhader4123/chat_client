@@ -1,0 +1,74 @@
+<div class="container-fluid" id="main-container">
+ 	
+    <div class="row h-100" >
+        <div class="col-12 col-sm-5 col-md-4 d-flex flex-column" id="contact-list-area" style="position:relative;    overflow: hidden;">
+            
+            <!-- Navbar contactlist -->
+            <div class=" row d-flex flex-row align-items-center p-2 "  id="navbarContact" >
+                <i class="fas fa-arrow-left p-2  my-1 " style="font-size: 1.2rem;margin-left: 0.3em!important; cursor: pointer;" id="arrowIcon" routerLink="/home" style="color:white"></i>	
+                                        
+                    <div  id="Title" class=" font-weight-bold mx-2" style="color:white">New Group</div>
+
+                <div class="ml-auto  searchIcon" id="searchIcon" style="margin-right: 3%;color:white">
+                    <i class="fa fa-search "  aria-hidden="true" (click)="searchBar()"></i>
+                </div>
+            </div>
+            
+            <div class=" row d-flex flex-row align-items-center p-2 hideelem"  id="navbarSearch" >
+                <i class="fas fa-arrow-left p-2  my-1 " style="font-size: 1.2rem;margin-left: 0.3em!important; cursor: pointer;" id="arrowIcon1" (click)="removeSearch()" style="color:#058c7f"></i>	
+                <input type="text" name="name" id="search-name" (keyup)="filterSearch()" autocomplete="off" class="searchName border-0 py-2 " placeholder="Search...">                   
+            </div>
+                
+            <div class="chat-list-item d-flex flex-row w-100 p-2 border-bottom hideelem " style="overflow-x: scroll;" id="selectedContacts"  >
+                
+                   
+            </div>
+         
+            <!-- Contact List -->
+            <div class="row" id="contact-list" ></div>
+
+			<div id="createGroup" class="newChat" (click)="createGroup()">
+                 <i class="fas fa-arrow-right" style="color: white;size: 135px;position: absolute;top: 15px;right: 17px;font-size: 26px;" aria-hidden="true"></i>
+            </div>
+            <div class="d-flex flex-column w-100 h-100 " id="profile-settings1">
+                <div class="row d-flex flex-row align-items-center p-2 m-0" id="profilenavbar"style="background:#009688; min-height:65px;">
+                    <i class="fas fa-arrow-left mx-3 my-1 text-white" style="font-size: 1.5rem; cursor: pointer;" (click)="hideGroup()"></i>
+                    <div class="w-50" style="padding-left:5px">
+                        <div class="name text-white font-weight-bold" >New Group</div>
+                        <div class="small last-message text-white">Add Subject</div>
+                    </div>
+                </div>
+                 <div class="row d-flex flex-row align-items-center p-2 m-0" style="background: white; height: 15%;     position: relative;" >
+                    <div id="importPhoto" class="importPhoto" (click)="showContacts()">
+                        <i class="fa fa-camera" style="color: white;
+                        position: absolute;
+                        top: 14px;
+                        left: 14px;
+                        font-size: 22px;" aria-hidden="true"></i>
+                        
+                    </div>
+                    <input type="text" name="name" id="searchname1"  autocomplete="off" class=" py-2 " style="width: 75%;border-color: transparent;
+                    border-bottom: 2px solid #067920;
+                    outline: none;
+                    margin-left: 5%;" placeholder="Type group subject here...">
+                    <span style="font-size: 11px;
+                    padding-left: 5%;
+                    margin-top: -8px; color: #8e8e8e"> Provide a group subject and optional group icon</span>
+                    <div id="newChat" class="newChat1" (click)="createNewGroup()">
+                    <i class="fa fa-check" style="color: white;
+                    size: 135px;
+                    position: absolute;
+                    top: 16px;
+                    right: 15px;
+                    font-size: 26px;" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <span id="participant" style="font-size: 13px;padding-top: 2%;padding-left: 5%;color: #797979;"> Participants :</span>
+                <div class=" d-flex flex-row w-100 p-2 flex-wrap"  id="GroupContacts"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="toast" class="toast">
+    <span>At least 1 contact must be selected</span>
+</div>

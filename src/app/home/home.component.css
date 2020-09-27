@@ -1,0 +1,33 @@
+.mar-2 {
+    margin-right: 0.75rem!important;
+}
+.newChat{
+    position: fixed;
+    background: limegreen;
+    width: 55px;
+    height: 55px;
+    /* bottom: 28px; */
+    top:88%;
+    border-radius: 61px;
+}
+@media screen and (max-width: 560px) {
+	.newChat{
+        left: 83%;
+    }
+}
+@media screen and (max-width: 760px) {
+	.newChat{
+        right: 60%;
+    }
+}
+@media screen and (min-width: 770px) {
+	.newChat{
+        left:25%;
+    }
+@media screen and (min-width: 975px) {
+    .newChat{
+        
+    left:27%;
+    }
+}
+}
